@@ -18,9 +18,34 @@ def home():
     return 'Hello, World!'
 
 
+@app.route("/single/<level>")
+def single(level):
+    # Opening JSON file
+    with open('vizinput/s' + level + '.json') as json_file:
+        data = json.load(json_file)
+    return render_template('tier.html', data=data, title='S'+level)
+
+
 @app.route("/double/<level>")
 def double(level):
     # Opening JSON file
     with open('vizinput/d' + level + '.json') as json_file:
         data = json.load(json_file)
-    return render_template('double.html', data=data, title='D'+level)
+    return render_template('tier.html', data=data, title='D'+level)
+
+
+@app.route("/detail/single/<level>")
+def detail_single(level):
+    # Opening JSON file
+    with open('vizinput/s' + level + '.json') as json_file:
+        data = json.load(json_file)
+    return render_template('detail.html', data=data, title='S'+level)
+
+
+@app.route("/detail/double/<level>")
+def detail_double(level):
+    # Opening JSON file
+    with open('vizinput/d' + level + '.json') as json_file:
+        data = json.load(json_file)
+    return render_template('detail.html', data=data, title='D'+level)
+
